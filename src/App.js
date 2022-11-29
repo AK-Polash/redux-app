@@ -1,24 +1,59 @@
-import logo from './logo.svg';
-import './App.css';
+import { useSelector, useDispatch } from "react-redux";
+import {
+  increment,
+  decrement,
+  incrementByAmount,
+  decrementByAmount,
+} from "./slices/countSlice";
+import "./App.css";
 
 function App() {
+  const count = useSelector((state) => state);
+
+  const dispatch = useDispatch();
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <>
+      {/* ================================= START ================================ */}
+      <div className="box">
+        <button
+          aria-label="Increment value"
+          onClick={() => dispatch(increment(5))}
+          className="buttons"
         >
-          Learn React
-        </a>
-      </header>
-    </div>
+          +
+        </button>
+
+        <h1 className="counter"> {count.counter.value} </h1>
+
+        <button
+          area-aria-label="Decrement value"
+          onClick={() => dispatch(decrement(0))}
+          className="buttons"
+        >
+          -
+        </button>
+      </div>
+      {/* ================================= END ================================ */}
+
+      {/* ================ START ========================= */}
+      <h1 className="my_name space-top"> {count.counter.naam} </h1>
+      {/* ================ END ========================= */}
+
+      {/* ================================= START ================================ */}
+      <div className="box space-top">
+        <button onClick={() => dispatch(incrementByAmount(5))} className="btn">
+          Add
+        </button>
+
+        <h1 className="counter"> {count.counter.amount} </h1>
+
+        <button onClick={() => dispatch(decrementByAmount(5))} className="btn">
+          Remove
+        </button>
+      </div>
+      {/* ================================= END ================================ */}
+    </>
   );
 }
 
