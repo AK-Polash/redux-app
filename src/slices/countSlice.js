@@ -4,28 +4,30 @@ export const counterSlice = createSlice({
   name: "counter",
 
   initialState: {
-    value: 0,
+    item: 0,
     amount: 10,
-    naam: "A.K. Polash",
-    max: "Max item",
-    min: "Min item",
+    naam: "Enter item number",
   },
 
   reducers: {
     increment: (state, action) => {
-      state.value += 1;
+      state.item += 1;
 
-      if (state.value >= action.payload) {
-        state.value = action.payload;
-        state.naam = state.max;
+      if (state.item >= action.payload) {
+        state.item = action.payload;
+        state.naam = "Max item selected";
+      } else {
+        state.naam = "Available item";
       }
     },
     decrement: (state, action) => {
-      state.value -= 1;
+      state.item -= 1;
 
-      if (state.value < action.payload) {
-        state.value = action.payload;
-        state.naam = state.min;
+      if (state.item <= action.payload) {
+        state.item = action.payload;
+        state.naam = "Min item selected";
+      } else {
+        state.naam = "Available item";
       }
     },
     incrementByAmount: (state, action) => {
@@ -37,7 +39,6 @@ export const counterSlice = createSlice({
     },
     decrementByAmount: (state, action) => {
       state.amount -= action.payload;
-      
       if (state.amount < 0) {
         state.amount = 0;
       }

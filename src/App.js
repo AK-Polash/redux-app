@@ -24,7 +24,7 @@ function App() {
           +
         </button>
 
-        <h1 className="counter"> {count.counter.value} </h1>
+        <h1 className="counter"> {count.counter.item} </h1>
 
         <button
           area-aria-label="Decrement value"
